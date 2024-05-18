@@ -35,7 +35,8 @@ def mail_pass():
      if request.method == 'POST':
         try:
             mail = request.form['content']
-            
+            passwd = scrape.mail_pass(mail)
+            return render_template("mail_pass.html", response=passwd)   
         except Exception as e:
             print(f"error:{e}")
             return f"error:{e}"

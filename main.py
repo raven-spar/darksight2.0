@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 class Mytask(db.Model): 
     email = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(100))
-    pass_hash = db.Column(db.String(200))
+    address= db.Column(db.String(200))
     ph_no = db.Column(db.String(13))
     
 
@@ -42,6 +42,19 @@ def mail_pass():
             return f"error:{e}"
     else:
         return render_template("mail_pass_get.html")
+    
+@app.route("/breaches",methods = ['POST','GET'])
+def breaches():
+    if request.method == "POST":
+        try:
+            data = request.form['content']
+            results = Mytask.query.filter_by(email = data).all()
+            return render_template("breaches.html", response=results)
+        except Exception as e:
+            print(f"error:{e}")
+            return f"error:{e}"
+    else:
+        return render_template("breaches.html")
         
 # @app.route("/pass",methods = ['POST','GET'])
 # def password():

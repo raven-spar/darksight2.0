@@ -16,7 +16,7 @@ class Mytask(db.Model):
     ph_no = db.Column(db.String(13))
     
 
-@app.route("/",methods = ['POST'])
+@app.route("/",methods = ['POST','GET'])
 def index():
     if request.method == 'POST':
         try:

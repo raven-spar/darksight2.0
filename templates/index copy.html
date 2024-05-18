@@ -7,24 +7,16 @@
 {% block content}
 <div class="content">
     <h1>Task Smash</h1>
-    {% if tasks|length < 1%}
+    {% if response|length < 1%}
     <h4>There are no tasks... create one below</h4>
     {% else %}
     <table>
         <tr>
-            <th>Task</th>
-            <th>Added</th>
-            <th>Actions</th>
+            <th>Leaked Pass</th>
         </tr>
-        {% for task in tasks %}
+        {% for passwd in response %}
             <tr>
-                <td>{{ task.content }}</td>
-                <td>{{ task.date_created.strftime("%Y-%m-%d") }}</td>
-                <td>
-                    <a href="/delete/{{task.id}}">Delete</a>
-                    <br />
-                    <a href="/update/{{task.id}}">Update</a>
-                </td>
+                <td>{{ passwd }}</td>
             </tr>
         {% endfor %}
     </table>

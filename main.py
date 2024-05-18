@@ -43,18 +43,18 @@ def mail_pass():
     else:
         return render_template("mail_pass.html")
         
-@app.route("/pass",methods = ['POST','GET'])
-def password():
-    if request.method == "POST":
-        try:
-            passwd = request.form['content']
-            breached = scrape.password(passwd)
-            return render_template("pass.html", response=breached)
-        except Exception as e:
-            print(f"error:{e}")
-            return f"error:{e}"
-    else:
-        return render_template("pass.html")
+# @app.route("/pass",methods = ['POST','GET'])
+# def password():
+#     if request.method == "POST":
+#         try:
+#             passwd = request.form['content']
+#             breached = scrape.password(passwd)
+#             return render_template("pass.html", response=breached)
+#         except Exception as e:
+#             print(f"error:{e}")
+#             return f"error:{e}"
+#     else:
+#         return render_template("pass.html")
 
 
 if __name__ == '__main__':

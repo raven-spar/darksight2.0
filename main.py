@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect , request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
+import scrape 
 
 app = Flask(__name__)
 Scss(app)
@@ -28,6 +29,16 @@ def index():
             return f"error:{e}"
     else:
         return render_template("index.html")
+    
+@app.route("/mail-pass")
+def mail_pass():
+     if request.method == 'POST':
+        try:
+            mail = request.form['content']
+            
+        except Exception as e:
+            print(f"error:{e}")
+            return f"error:{e}"
 
 if __name__ == '__main__':
     with app.app_context():

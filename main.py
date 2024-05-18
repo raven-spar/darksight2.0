@@ -30,7 +30,7 @@ def index():
     else:
         return render_template("index.html")
     
-@app.route("/mail-pass")
+@app.route("/mail-pass", methods = ['POST','GET'])
 def mail_pass():
     if request.method == 'POST':
         try:
@@ -43,7 +43,7 @@ def mail_pass():
     else:
         return render_template("mail_pass.html")
         
-@app.route("/pass")
+@app.route("/pass",methods = ['POST','GET'])
 def password():
     if request.method == "POST":
         try:

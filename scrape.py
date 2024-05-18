@@ -1,25 +1,22 @@
 import json
 import requests
 
-def mail_pass():
+def mail_pass(mail):
     url = "https://api.proxynova.com/comb?query="
-    query = input("")
-
-    response = requests.get(url+query)
+    response = requests.get(url+mail)
     data = json.loads(response.text)["lines"]
     pass_list = []
     for i in data:
-        if (i.split(":")[0] == query):
+        if (i.split(":")[0] == mail):
             pass_list.append(i.split(":")[1])
     return pass_list
 
-def password():
+def password(password):
     url = "https://api.proxynova.com/comb?query="
-    query = input("")
-    response = requests.get(url+query)
+    response = requests.get(url+password)
     data = json.loads(response.text)["lines"]
     for i in data:
-        if (i.split(":")[1] == query):
+        if (i.split(":")[1] == password):
             return True
     return False
 

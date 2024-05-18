@@ -32,7 +32,7 @@ def index():
     
 @app.route("/mail-pass")
 def mail_pass():
-     if request.method == 'POST':
+    if request.method == 'POST':
         try:
             mail = request.form['content']
             passwd = scrape.mail_pass(mail)
@@ -40,6 +40,22 @@ def mail_pass():
         except Exception as e:
             print(f"error:{e}")
             return f"error:{e}"
+    else:
+        return render_template("mail_pass.html")
+        
+@app.route("/pass")
+def password():
+    if request.method == "POST":
+        try:
+            passwd = request.form['content']
+            breached = scrape.password(passwd)
+            return render_template("pass.html", response=breached)
+        except Exception as e:
+            print(f"error:{e}")
+            return f"error:{e}"
+    else:
+        return render_template("pass.html")
+
 
 if __name__ == '__main__':
     with app.app_context():

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect , request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 
@@ -16,9 +16,16 @@ class Mytask(db.Model):
     ph_no = db.Column(db.String(13))
     
 
-@app.route("/",methods=['POST', 'GET'])
+@app.route("/",method = 'GET')
 def index():
-    pass
+    if request.method == 'GET':
+        try:
+            mail = request.form['content']
+            query = Mytask.query.filter_by(email = mail ).all()
+            return render_template('index.html', response=query)
+        except Exception as e:
+            print(f"error:{e}")
+            return f"error:{e}"
 
 if __name__ == '__main__':
     with app.app_context():

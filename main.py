@@ -16,9 +16,11 @@ class Mytask(db.Model):
     ph_no = db.Column(db.String(13))
     
 
-@app.route("/")
+@app.route("/",methods=['POST', 'GET'])
 def index():
-    return render_template("index.html")
+    pass
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

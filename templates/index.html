@@ -1,14 +1,40 @@
-{% extends 'base.html' %}
-{% block title %}
-<title>Flask App</title>
-{% endblock %} 
 
-{% block content %}
-<div class="content">
-    <form action="/" method="POST">
-        <input type=""text" name="content" id="content" />
-        <input type="submit" value="Submit" id="add_btn" />
-    </form>
-</div>
-</body>
+
+{% block scripts %}
+    <script>
+        function hideMain() {
+            document.querySelector('.main').style.display = 'none';
+        }
+    </script>
 {% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Text Encryptor</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+
+</head>
+<body>
+    {% block content %}
+    <div class="main">
+        <h1>DarkSight    <span style="color:#3d5afe;"></span></h1>
+        <p style="color: rgb(128, 128, 128);"> 
+            Find leaked breaches on the Dark Web
+        </p>
+        <form action="/" method="POST">
+        <textarea name="text" id="content" class="input" placeholder="Message"></textarea>
+        <div class="buttons">
+        <button class="button" type="sumbit">Submit</button>
+        </div>
+    </form>
+    <footer style="text-align: center;">
+        <p>Made with ❤️ by Darksight</p>
+    </footer>
+    </div>
+    <div class="output">
+    {% endblock %}
+</body>
+
+</html>

@@ -1,9 +1,40 @@
-{% extends 'base.html' %}
-
-{%block title %}<title>See Stolen Password</title>
-{% endblock%}
+{% extends "index.html" %}
 
 {% block content %}
+    <div class="main">
+        <h1>DarkSight    <span style="color:#3d5afe;"></span></h1>
+        <p style="color: rgb(128, 128, 128);"> 
+            Find leaked breaches on the Dark Web
+        </p>
+        <form action="/mail-pass" method="POST">
+        <input type="text" name="content" id="content" class="input" placeholder="Message"></textarea>
+        <div class="buttons">
+        <button class="button" type="sumbit">Submit</button>
+        </div>
+    </form>
+    {% if response|length < 1%}
+    <h4>No leaked Credentials, Hurray!</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Leaked Pass</th>
+        </tr>
+        {% for passwd in response %}
+            <tr>
+                <td>{{ passwd }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <footer style="text-align: center;">
+        
+    </footer>
+    </div>
+    <div class="output">
+{% endblock %}
+
+<!-- 
+
 <div class="content">
     <h1>Leaked Passwords</h1>
     {% if response|length < 1%}
@@ -26,5 +57,5 @@
     </form>
 </div>
 </body>
-{% endblock %}
+-->
 

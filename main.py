@@ -26,6 +26,8 @@ def index():
         except Exception as e:
             print(f"error:{e}")
             return f"error:{e}"
+    else:
+        return render_template("index.html")
 
 if __name__ == '__main__':
     with app.app_context():

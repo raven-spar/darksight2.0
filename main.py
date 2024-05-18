@@ -16,12 +16,12 @@ class Mytask(db.Model):
     ph_no = db.Column(db.String(13))
     
 
-@app.route("/",method = 'GET')
+@app.route("/",methods = ['POST'])
 def index():
-    if request.method == 'GET':
+    if request.method == 'POST':
         try:
             mail = request.form['content']
-            query = Mytask.query.filter_by(email = mail ).all()
+            query = Mytask.query.filter_by(email = mail).all()
             return render_template('index.html', response=query)
         except Exception as e:
             print(f"error:{e}")

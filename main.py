@@ -10,7 +10,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db = SQLAlchemy(app)
 
 class Mytask(db.Model): 
-    email = db.Column(db.String(50))
+    email = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(100))
     pass_hash = db.Column(db.String(200))
     ph_no = db.Column(db.String(13))

@@ -17,7 +17,7 @@ class Mytask(db.Model):
     ph_no = db.Column(db.String(13))
     
 
-@app.route("/",methods = ['POST','GET'])
+@app.route("/index",methods = ['POST','GET'])
 def index():
     if request.method == 'POST':
         try:
@@ -30,7 +30,7 @@ def index():
     else:
         return render_template("index.html")
     
-@app.route("/mail-pass", methods = ['POST','GET'])
+@app.route("/", methods = ['POST','GET'])
 def mail_pass():
     if request.method == 'POST':
         try:
@@ -41,7 +41,7 @@ def mail_pass():
             print(f"error:{e}")
             return f"error:{e}"
     else:
-        return render_template("mail_pass.html")
+        return render_template("mail_pass_get.html")
         
 # @app.route("/pass",methods = ['POST','GET'])
 # def password():

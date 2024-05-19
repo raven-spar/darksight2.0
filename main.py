@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect , request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 import scrape 
+import random
 
 app = Flask(__name__)
 Scss(app)
@@ -49,8 +50,16 @@ def breaches():
     if request.method == "POST":
         try:
             data = request.form['content']
+            res = [0,0,0,0,0]
             results = Mytask.query.filter_by(email = data).all()
-            return render_template("breaches.html", response=results)
+            for result in results:
+                res[0]= result.name[0:3] + '*' * (len(result.name) - 3)
+                res[1] = result.email
+                res[2] = '*' * 7 + result.ph_no[7:]
+                res[3] = '*'*(len(result.address)-10) + result.address[-10:]
+                res[4] = 'Boat'
+
+            return render_template("breaches.html", response=res)
         except Exception as e:
             print(f"error:{e}")
             return f"error:{e}"

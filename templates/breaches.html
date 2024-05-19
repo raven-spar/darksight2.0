@@ -22,15 +22,19 @@
             <th style="border: 1px solid black; padding: 8px">Email</th>
             <th style="border: 1px solid black; padding: 8px">Phone No</th>
             <th style="border: 1px solid black; padding: 8px">Address</th>
+            <th style="border: 1px solid black; padding: 8px">BreachedCompany</th>
+
         </tr>
-        {% for result in response %}
+        
             <tr>
-                <td style="border: 1px solid black; padding: 8px">{{ result.name }}</td>
-                <td style="border: 1px solid black; padding: 8px">{{ result.email }}</td>
-                <td style="border: 1px solid black; padding: 8px">{{ result.ph_no }}</td>
-                <td style="border: 1px solid black; padding: 8px">{{ result.address }}</td>
+                <td style="border: 1px solid black; padding: 8px">{{ response[0] }}</td>
+                <td style="border: 1px solid black; padding: 8px">{{ response[1] }}</td>
+                <td style="border: 1px solid black; padding: 8px">{{ response[2] }}</td>
+                <td style="border: 1px solid black; padding: 8px">{{ response[3] }}</td>
+                <td style="border: 1px solid black; padding: 8px">{{ response[4] }}</td>
+
             </tr>
-        {% endfor %}
+    
     </table>
     {% endif %}
     <footer style="text-align: center;">

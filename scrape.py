@@ -24,7 +24,15 @@ def breaches():
     url = "https://haveibeenpwned.com/api/v2/breaches"
     response = requests.get(url)
     data = json.loads(response.text)
-    return json.dumps(data, indent=5)
+    # for i in data:
+    #     name, domain, date, count, description = i["Name"], i["Domain"], i["BreachDate"], 
+    #     domain = i["Domain"]
+    #     date = i["BreachDate"]
+    #     count = i["PwnCount"]
+    #     description = i["Description"]
+    #     print(name, domain, )
+    #     break
+    return json.dumps(data)
 
 
 

@@ -12,25 +12,7 @@
         <button class="button" type="sumbit">Submit</button>
         </div>
     </form>
-    {% if response|length < 1%}
-    <h4>No leaked Credentials, Hurray!</h4>
-    {% else %}
-    <table>
-        <tr>
-            <th>Leaked Pass</th>
-        </tr>
-        {% for passwd in response %}
-            <tr>
-                <td>{{ passwd }}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
-    <footer style="text-align: center;">
-        
-    </footer>
-    </div>
-    <div class="output">
+    
 {% endblock %}
 
 <!-- 

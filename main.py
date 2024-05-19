@@ -10,8 +10,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 
 db = SQLAlchemy(app)
 
-class Mytask(db.Model): 
-    email = db.Column(db.String(50), primary_key=True)
+class Mytask(db.Model):
+    id = db.Column(db.Integer, primary_key=True) 
+    email = db.Column(db.String(50))
     name = db.Column(db.String(100))
     address= db.Column(db.String(200))
     ph_no = db.Column(db.String(13))
@@ -30,7 +31,7 @@ def index():
     else:
         return render_template("index.html")
     
-@app.route("/", methods = ['POST','GET'])
+@app.route("/mail-pass", methods = ['POST','GET'])
 def mail_pass():
     if request.method == 'POST':
         try:
@@ -43,7 +44,7 @@ def mail_pass():
     else:
         return render_template("mail_pass_get.html")
     
-@app.route("/breaches",methods = ['POST','GET'])
+@app.route("/",methods = ['POST','GET'])
 def breaches():
     if request.method == "POST":
         try:
@@ -54,7 +55,7 @@ def breaches():
             print(f"error:{e}")
             return f"error:{e}"
     else:
-        return render_template("breaches.html")
+        return render_template("breaches_get.html")
         
 # @app.route("/pass",methods = ['POST','GET'])
 # def password():
@@ -69,8 +70,26 @@ def breaches():
 #     else:
 #         return render_template("pass.html")
 
+def db_pop():
+    with open('lol.txt') as file:
+        j = 1
+        for i in file.readlines():
+            print(j)
+            data = i.split('\t')
+            # print(data)
+            t = Mytask(id=j, name=data[0], email=data[1], ph_no=data[2], address=data[3])
+            try:
+                db.session.add(t)
+                db.session.commit()
+            except Exception as e:
+                print(e)
+            j += 1
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        #db_pop()
+        # tasks = Mytask.query.order_by(Mytask.id).all()
+        # for task in tasks:
+        #     print(task.email)
     app.run(debug=True)
